@@ -1,12 +1,1 @@
-[
-  {
-    "title": "Otago project",
-    "category": "COMMERCIAL",
-    "image": "/images/bg1.jpg"
-  },
-  {
-    "image": "/images/bg3.jpg",
-    "category": "GOVERNMENT",
-    "title": "TNT EAST FACILITY"
-  }
-]
+[{"title":"education","category":"education,government","image":"/images/project4.jpg"},{"title":"Otago project","category":"COMMERCIAL","image":"/images/bg1.jpg"},{"image":"/images/bg3.jpg","category":"GOVERNMENT","title":"TNT EAST FACILITY"}]

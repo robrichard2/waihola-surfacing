@@ -4,14 +4,20 @@ import projects from "../../projects.json";
 
 export const ProjectGrid = () => {
   const [category, setCategory] = useState(null);
-  const categories = projects.reduce(
-    (acc, { category }) => [...acc, ...category.split(",")],
-    []
-  );
+  const categories = [
+    ...new Set(
+      projects.reduce(
+        (acc, { category }) => [...acc, ...category.split(",")],
+        []
+      )
+    ),
+  ];
   const Tile = () =>
     projects
       .filter(
-        project => category === null || project.category.includes(category)
+        project =>
+          category === null ||
+          project.category.toLocaleLowerCase().includes(category)
       )
       .map(({ category, image, title }, idx) => {
         return (
@@ -57,9 +63,9 @@ export const ProjectGrid = () => {
                 <li key={`category-${idx}`}>
                   <span
                     className={`pointer ${
-                      category === _category ? "active" : ""
+                      category === _category.toLocaleLowerCase() ? "active" : ""
                     }`}
-                    onClick={() => setCategory(_category)}>
+                    onClick={() => setCategory(_category.toLocaleLowerCase())}>
                     {_category}
                   </span>
                 </li>
