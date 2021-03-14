@@ -1,23 +1,20 @@
 const path = require("path")
 const fs = require("fs")
-const mdjs = require("markdown-to-json");
 
-const dirPath = path.join(__dirname, "../projects")
+const projectsFilesPath = path.join(__dirname, "../projects")
 
 
 const loadProjects = () => {
-    fs.readdir(dirPath, (err, files) => {
+    fs.readdir(projectsFilesPath, (err, files) => {
         if (err) {
             return console.log("Failed to list contents of directory: " + err)
         }
-        const _files = files.map(f=>`${dirPath}/${f}`)
-        const results = JSON.parse(mdjs.parse(_files, {}));
-        let data = JSON.stringify(results)
-        fs.writeFileSync("src/projects.json", data)
+        const contents = files.map(file => {
+            return JSON.parse(fs.readFileSync(`${projectsFilesPath}/${file}`));
+        });
+        fs.writeFileSync("src/projects.json",JSON.stringify(contents) )
     })
     return 
 }
-
-
 
 loadProjects()

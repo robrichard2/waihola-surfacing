@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="App">
      
-      {Object.entries(projects).map(([key,{category,image,title}])=>{
+      {projects.map(({category,image,title},idx)=>{
         return(
-          <div key={key}>
+          <div key={idx}>
             <h1>{title}</h1>
             <img src={image} width={300} height={"auto"} alt={image} />
             <p>{category}</p>
