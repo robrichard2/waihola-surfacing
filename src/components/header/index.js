@@ -93,7 +93,10 @@ export const Header = () => {
                     {navData.map(({ path, title }, idx) => (
                       <li
                         className={
-                          location.pathname.includes(path) ? "active" : ""
+                          location.pathname.includes(path) ||
+                          (location.pathname === "/" && path === "/home")
+                            ? "active"
+                            : ""
                         }
                         key={`nav-link-${idx}`}>
                         <Link to={path}>{title}</Link>
