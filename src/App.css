@@ -5,3 +5,21 @@
 .pointer{
     cursor: pointer !important;
 }
+
+
+.isotope-nav ul span.active {
+    color: #212121;
+    background: #ffb600;
+}
+
+.isotope-nav ul li span {
+    color: #212121;
+    font-size: 14px;
+    padding: 12px 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}

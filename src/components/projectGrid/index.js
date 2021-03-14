@@ -1,35 +1,40 @@
-/* eslint-disable */
 import React, { useState } from "react";
 
 import projects from "../../projects.json";
 
 export const ProjectGrid = () => {
   const [category, setCategory] = useState(null);
-  const categories = projects.map(({ category }) => category);
-  const tile = projects
-    .filter(project => category === null || project.category === category)
-    .map(({ category, image, title }, idx) => {
-      return (
-        <div
-          key={idx}
-          className="col-md-4 col-sm-6 col-xs-12 commercial isotope-item">
-          <div className="isotope-img-container">
-            <a className="gallery-popup" href={image}>
-              <img className="img-responsive" src={image} alt="" />
-              <span className="gallery-icon">
-                <i className="fa fa-plus"></i>
-              </span>
-            </a>
-            <div className="project-item-info">
-              <div className="project-item-info-content">
-                <h3 className="project-item-title text-white">{title}</h3>
-                <p className="project-cat">{category}</p>
+  const categories = projects.reduce(
+    (acc, { category }) => [...acc, ...category.split(",")],
+    []
+  );
+  const Tile = () =>
+    projects
+      .filter(
+        project => category === null || project.category.includes(category)
+      )
+      .map(({ category, image, title }, idx) => {
+        return (
+          <div
+            key={idx}
+            className="col-md-4 col-sm-6 col-xs-12 commercial isotope-item">
+            <div className="isotope-img-container">
+              <a className="gallery-popup" href={image}>
+                <img className="img-responsive" src={image} alt="" />
+                <span className="gallery-icon">
+                  <i className="fa fa-plus"></i>
+                </span>
+              </a>
+              <div className="project-item-info">
+                <div className="project-item-info-content">
+                  <h3 className="project-item-title text-white">{title}</h3>
+                  <p className="project-cat">{category}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
 
   return (
     <section id="main-container" className="main-container">
@@ -42,27 +47,27 @@ export const ProjectGrid = () => {
           <div className="isotope-nav" data-isotope-nav="isotope">
             <ul>
               <li>
-                <a
+                <span
                   className={`pointer ${category === null ? "active" : ""}`}
                   onClick={() => setCategory(null)}>
                   Show All
-                </a>
+                </span>
               </li>
               {categories.map((_category, idx) => (
                 <li key={`category-${idx}`}>
-                  <a
+                  <span
                     className={`pointer ${
                       category === _category ? "active" : ""
                     }`}
                     onClick={() => setCategory(_category)}>
                     {_category}
-                  </a>
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
           <div id="isotope" className="isotope">
-            {tile}
+            <Tile />
           </div>
         </div>
       </div>

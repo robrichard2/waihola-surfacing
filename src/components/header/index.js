@@ -1,7 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+const navData = [
+  { path: "/home", title: "Home" },
+  { path: "/services", title: "Services" },
+  { path: "/projects", title: "Projects" },
+  { path: "/about", title: "About Us" },
+  { path: "/testimonials", title: "Testimonials" },
+  { path: "/contact", title: "Contact Us" },
+];
 
 export const Header = () => {
+  const location = useLocation();
+  console.log({ location });
   const AddressHeader = () => (
     <div id="top-bar" className="top-bar">
       <div className="container">
@@ -79,43 +90,19 @@ export const Header = () => {
 
                 <div className="collapse navbar-collapse navbar-responsive-collapse">
                   <ul className="nav navbar-nav">
-                    <li>
-                      <Link to={"/home"}>Home</Link>
-                    </li>
-                    <li>
-                      <Link to={"/services"}>Services</Link>
-                    </li>
-                    <li>
-                      <Link to={"/projects"}>Projects</Link>
-                    </li>
-                    <li>
-                      <Link to={"about"}>About Us</Link>
-                    </li>
-                    <li>
-                      <Link to={"testimonials"}>Testimonials</Link>
-                    </li>
-                    <li>
-                      <Link to={"/contact"}>Contact</Link>
-                    </li>
+                    {navData.map(({ path, title }, idx) => (
+                      <li
+                        className={
+                          location.pathname.includes(path) ? "active" : ""
+                        }
+                        key={`nav-link-${idx}`}>
+                        <Link to={path}>{title}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="nav-search">
-            <span id="search">
-              <i className="fa fa-search"></i>
-            </span>
-          </div>
-
-          <div className="search-block" style={{ display: "none" }}>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Type what you want and enter"
-            />
-            <span className="search-close">&times;</span>
           </div>
         </div>
       </nav>

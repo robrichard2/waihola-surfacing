@@ -178,7 +178,7 @@ export const Home = () => {
                 <div className="col-md-6">
                   <div className="ts-service-box">
                     <span className="ts-service-icon">
-                      <i className="fa fa--up"></i>
+                      <i className="fa fa-angellist"></i>
                     </span>
                     <div className="ts-service-box-content">
                       <h3 className="service-box-title">

@@ -1,1 +1,12 @@
-[{"title":"Otago project","category":"some, new, sample","image":"/images/bg1.jpg"}]
+[
+  {
+    "title": "Otago project",
+    "category": "COMMERCIAL",
+    "image": "/images/bg1.jpg"
+  },
+  {
+    "image": "/images/bg3.jpg",
+    "category": "GOVERNMENT",
+    "title": "TNT EAST FACILITY"
+  }
+]
